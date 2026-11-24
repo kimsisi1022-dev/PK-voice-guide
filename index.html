@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Korean Dealer Voice &amp; Tone Guide</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans KR', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .ko-text {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.7; }
+      70% { transform: scale(1.1); opacity: 0; }
+      100% { transform: scale(0.95); opacity: 0; }
+    }
+    .recording-pulse::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 0.5rem;
+      border: 2px solid #ef4444;
+      animation: pulse-ring 1.25s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Header -->
+  <header class="bg-white border-b border-slate-200 px-4 py-4">
+    <div class="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-indigo-600 text-white font-bold text-sm">KR</span>
+          <h1 class="text-lg sm:text-xl font-bold tracking-tight text-slate-900">Korean Dealer Voice &amp; Tone Guide</h1>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Compare Avoid vs. Ideal tone, then record &amp; check your own voice</p>
+      </div>
+      <div class="inline-flex items-center gap-1.5 text-xs font-medium text-indigo-700 bg-indigo-50 border border-indigo-100 px-3 py-1.5 rounded-full self-start sm:self-auto">
+        <span>✨</span>
+        <span>Flat Stress ≠ Boring Tone</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Prosody Legend Bar -->
+  <div class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm px-3 py-2.5">
+    <div class="max-w-3xl mx-auto flex flex-col gap-1.5">
+      <div class="flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 shrink-0 mr-1">Markers:</span>
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium">
+            <strong class="font-extrabold">↑</strong> Raise Pitch
+          </span>
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-50 border border-amber-200 text-amber-800 text-xs font-medium">
+            <strong class="font-extrabold">▲</strong> Key Word <span class="hidden sm:inline text-amber-700/80">(Clear &amp; Bright — not loud!)</span>
+          </span>
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-sky-50 border border-sky-200 text-sky-700 text-xs font-medium">
+            <strong class="font-extrabold">/</strong> Short Pause
+          </span>
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-medium">
+            <strong class="font-extrabold">~</strong> Stretch Ending
+          </span>
+        </div>
+      </div>
+      <p class="sm:hidden text-[11px] text-amber-700">
+        <strong>▲ Key Word:</strong> Pronounce clearly with bright smile energy (do NOT shout).
+      </p>
+    </div>
+  </div>
+
+  <!-- Category Tabs -->
+  <nav class="bg-slate-50 border-b border-slate-200 px-3 py-3">
+    <div id="categoryTabs" class="max-w-3xl mx-auto flex items-center gap-2 overflow-x-auto no-scrollbar"></div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-3xl w-full mx-auto px-4 py-6 space-y-5">
+    <section id="sectionHeader" class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm"></section>
+
+    <div id="micStatusBanner" class="hidden bg-amber-50 border border-amber-200 text-amber-800 text-xs rounded-xl px-4 py-2.5 flex items-center justify-between gap-2">
+      <span id="micStatusText">Microphone access is required to record and compare your voice.</span>
+      <button onclick="document.getElementById('micStatusBanner').classList.add('hidden')" class="text-amber-600 hover:text-amber-900 font-bold">✕</button>
+    </div>
+
+    <section id="phrasesContainer" class="space-y-4"></section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-5 px-4 mt-8 text-center text-xs text-slate-400">
+    <p>Tip: Smile gently while speaking — lifting the corners of your mouth naturally brightens your Korean pitch.</p>
+    <p class="mt-1">Audio folder structure: <code class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">audio/2_1_1.mp3</code> (Ideal) &amp; <code class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">audio/2_1_1_bad.mp3</code> (Avoid)</p>
+  </footer>
+
+  <script>
+    const guideData = [
+      {
+        id: "2.1",
+        tabLabel: "2.1 Greeting & Intro",
+        title: "2.1 Greeting & Introduction",
+        moodTags: ["Warm", "Welcoming", "Gentle Smile", "Lively Pitch"],
+        howToDeliver: [
+          "Start with a warm, friendly, and welcoming voice.",
+          "Use natural pitch variation to make your greeting sound lively.",
+          "Smile gently while speaking to create a warmer voice.",
+          "Avoid sounding too formal, flat, or robotic."
+        ],
+        phrases: [
+          {
+            id: "2_1_1",
+            annotatedKo: "플레이어 여러분~ / ↑안녕하세요~",
+            cleanKo: "플레이어 여러분, 안녕하세요",
+            romanized: "Player yeoreobun~ / ↑annyeonghaseyo~",
+            meaning: "Hello everyone (players)!",
+            note: "Lift your pitch noticeably on '안녕하세요~' with a warm smile."
+          },
+          {
+            id: "2_1_2",
+            annotatedKo: "이번 세션을 맡은 / 딜러 ▲(이름) 입니다~",
+            cleanKo: "이번 세션을 맡은 딜러입니다",
+            romanized: "Ibeon sessioneul mateun / dealer ▲(your name) imnida~",
+            meaning: "I am dealer (name), hosting this session.",
+            note: "Pause briefly after '맡은', then say your name clearly and brightly."
+          },
+          {
+            id: "2_1_3",
+            annotatedKo: "이번 세션 / 딜러 ▲(이름) 입니다~",
+            cleanKo: "이번 세션 딜러입니다",
+            romanized: "Ibeon session / dealer ▲(your name) imnida~",
+            meaning: "I am your dealer for this session.",
+            note: "Short, friendly version. Keep the ending '~입니다~' warm and smooth."
+          }
+        ]
+      },
+      {
+        id: "2.2",
+        tabLabel: "2.2 Betting Open",
+        title: "2.2 Betting Opening Announcement",
+        moodTags: ["Energetic", "Inviting", "Clear Pace"],
+        howToDeliver: [
+          "Use an energetic and inviting tone.",
+          "Give clear, bright emphasis to important words such as '베팅' and '시간'.",
+          "Use natural pitch variation instead of speaking in a flat tone.",
+          "Maintain a smooth and clear speaking pace.",
+          "Make your announcement sound like you are inviting players to participate."
+        ],
+        phrases: [
+          {
+            id: "2_2_1",
+            annotatedKo: "▲베팅 ▲시간입니다~ / ↑베팅해 주세요~",
+            cleanKo: "베팅 시간입니다. 베팅해 주세요.",
+            romanized: "▲Beting ▲sigan-imnida~ / ↑betinghae juseyo~",
+            meaning: "It's betting time. Please place your bets.",
+            note: "Articulate '베팅' and '시간' cleanly with bright energy, then invite warmly."
+          },
+          {
+            id: "2_2_2",
+            annotatedKo: "여러분~ / ▲베팅할 ▲시간입니다~",
+            cleanKo: "여러분, 베팅할 시간입니다.",
+            romanized: "Yeoreobun~ / ▲betinghal ▲sigan-imnida~",
+            meaning: "Everyone, it's time to place your bets.",
+            note: "Use '여러분~' to catch players' attention gently."
+          },
+          {
+            id: "2_2_3",
+            annotatedKo: "▲베팅 시간이 오픈되었고 / ↑베팅하세요~",
+            cleanKo: "베팅 시간이 오픈되었고 베팅하세요.",
+            romanized: "▲Beting sigani opeun-doeeotgo / ↑betinghaseyo~",
+            meaning: "Betting time is open, please place your bets.",
+            note: "Connect '오픈되었고' smoothly without chopping syllables."
+          },
+          {
+            id: "2_2_4",
+            annotatedKo: "새로운 ▲라운드가 오픈되었습니다~ / ↑베팅해 주세요~",
+            cleanKo: "새로운 라운드가 오픈되었습니다. 베팅해 주세요.",
+            romanized: "Saeroun ▲raundega opeun-doeeotseumnida~ / ↑betinghae juseyo~",
+            meaning: "A new round is open. Please place your bets.",
+            note: "Fresh, upbeat tone to signal a brand-new round."
+          },
+          {
+            id: "2_2_5",
+            annotatedKo: "▲사이드 베팅도 / 지금 ↑해 주세요~",
+            cleanKo: "사이드 베팅도 지금 해 주세요.",
+            romanized: "▲Saideu betingdo / jigeum ↑hae juseyo~",
+            meaning: "Please place your side bets now as well.",
+            note: "Remember: Do NOT use this line in Dragon Tiger!"
+          },
+          {
+            id: "2_2_6",
+            annotatedKo: "베팅 ▲5초 남았습니다~",
+            cleanKo: "베팅 5초 남았습니다.",
+            romanized: "Beting ▲o-cho namatseumnida~",
+            meaning: "5 seconds left for betting.",
+            note: "Give a helpful, alert cue on '5초' without sounding panicked."
+          }
+        ]
+      },
+      {
+        id: "2.3",
+        tabLabel: "2.3 Betting Close",
+        title: "2.3 Betting Closing Announcement",
+        moodTags: ["Firm", "Clear", "Confident", "Controlled"],
+        howToDeliver: [
+          "Use a firm, clear, and confident voice.",
+          "Speak decisively without rushing or shouting.",
+          "Keep your sentence endings clear and controlled."
+        ],
+        phrases: [
+          {
+            id: "2_3_1",
+            annotatedKo: "베팅 시간 / ▲마감했습니다.",
+            cleanKo: "베팅 시간 마감했습니다.",
+            romanized: "Beting sigan / ▲magam-haetseumnida.",
+            meaning: "Betting time is closed (No more bets).",
+            note: "Crisp, decisive finish on '마감했습니다.' — steady and authoritative."
+          },
+          {
+            id: "2_3_2",
+            annotatedKo: "베팅 ▲마감하고 / 게임 ▲시작합니다.",
+            cleanKo: "베팅 마감하고 게임 시작합니다.",
+            romanized: "Beting ▲magam-hago / geim ▲sijak-hamnida.",
+            meaning: "Closing bets and starting the game.",
+            note: "Smooth transition from closing bets to starting the deal."
+          },
+          {
+            id: "2_3_3",
+            annotatedKo: "↑행운을 빌어요~",
+            cleanKo: "행운을 빌어요.",
+            romanized: "↑Haeng-uneul bireoyo~",
+            meaning: "Good luck!",
+            note: "Soften your tone after closing bets — sound genuinely encouraging."
+          }
+        ]
+      },
+      {
+        id: "2.4",
+        tabLabel: "2.4 Card Dealing",
+        title: "2.4 Card Dealing",
+        moodTags: ["Calm", "Steady", "Smooth Flow", "Professional"],
+        howToDeliver: [
+          "Maintain a calm, steady, and professional voice.",
+          "Focus on smooth pronunciation and natural rhythm.",
+          "Connect words naturally instead of pronouncing each word separately."
+        ],
+        phrases: [
+          {
+            id: "2_4_1",
+            annotatedKo: "▲플레이어 / ▲뱅커 / 추가 카드 받고~",
+            cleanKo: "플레이어 추가 카드 받고",
+            romanized: "▲Player / ▲Banker / chuga kadeu batgo~",
+            meaning: "Player / Banker draws an additional card, and...",
+            note: "Connect '추가 카드 받고' in one smooth breath."
+          },
+          {
+            id: "2_4_2",
+            annotatedKo: "▲히트 / ▲스탠드 / ▲더블다운 / ▲스플릿 ↑하시겠어요?",
+            cleanKo: "히트, 스탠드, 더블다운, 스플릿 하시겠어요?",
+            romanized: "▲Hit / ▲Stand / ▲Double Down / ▲Split ↑hasigesseoyo?",
+            meaning: "Would you like to Hit / Stand / Double Down / Split?",
+            note: "Raise your intonation naturally at the end of '하시겠어요?' like a polite question."
+          },
+          {
+            id: "2_4_3",
+            annotatedKo: "↑선택해 주세요~",
+            cleanKo: "선택해 주세요.",
+            romanized: "↑Seontaek-hae juseyo~",
+            meaning: "Please make your choice.",
+            note: "Polite, patient, and clear."
+          }
+        ]
+      },
+      {
+        id: "2.5",
+        tabLabel: "2.5 Winning & Congrats",
+        title: "2.5 Winning Announcements & Congratulations",
+        moodTags: ["High Energy", "Bright", "Warm", "Sincere"],
+        howToDeliver: [
+          "Add a little more energy when announcing a winning result.",
+          "Clearly emphasise the winning side (clear & bright, not shouting).",
+          "Use a brighter and warmer tone when congratulating players.",
+          "Make your congratulations sound sincere and friendly."
+        ],
+        phrases: [
+          {
+            id: "2_5_1",
+            annotatedKo: "▲플레이어(뱅커) ▲승! / 승리하신 분들 ↑축하드립니다~",
+            cleanKo: "플레이어 승! 승리하신 분들 축하드립니다.",
+            romanized: "▲Player (Banker) ▲seung! / seung-ri-hasin bundeul ↑chuk-ha-deurimnida~",
+            meaning: "Player (Banker) wins! Congratulations to all winners.",
+            note: "Give '승!' a crisp punch, then brighten your voice on '축하드립니다~'."
+          },
+          {
+            id: "2_5_2",
+            annotatedKo: "▲타이입니다~ / 타이 배당은 ▲여덟 배입니다.",
+            cleanKo: "타이입니다. 타이 배당은 여덟 배입니다.",
+            romanized: "▲Tai-imnida~ / tai baedang-eun ▲yeodeol bae-imnida.",
+            meaning: "It's a Tie. Tie payout is 8 to 1.",
+            note: "Pronounce '여덟 배' clearly. (Remember: Omit payout mention in Dragon Tiger!)"
+          },
+          {
+            id: "2_5_3",
+            annotatedKo: "▲플레이어(뱅커) / 네추럴 ▲8(9)로 승리합니다~ / ↑축하드립니다~",
+            cleanKo: "플레이어 네추럴 8로 승리합니다. 축하드립니다.",
+            romanized: "▲Player (Banker) / natural ▲pal-lo (gu-ro) seung-ri-hamnida~ / ↑chuk-ha-deurimnida~",
+            meaning: "Player (Banker) wins with a Natural 8 (9). Congratulations!",
+            note: "Celebrate the Natural win with extra brightness in your voice."
+          },
+          {
+            id: "2_5_4",
+            annotatedKo: "▲사이드 베팅도 / ↑축하드립니다~",
+            cleanKo: "사이드 베팅도 축하드립니다.",
+            romanized: "▲Saideu betingdo / ↑chuk-ha-deurimnida~",
+            meaning: "Congratulations on the side bet as well!",
+            note: "Keep the celebratory momentum going."
+          },
+          {
+            id: "2_5_5",
+            annotatedKo: "베팅 성공 / ↑축하드립니다~",
+            cleanKo: "베팅 성공 축하드립니다.",
+            romanized: "Beting seong-gong / ↑chuk-ha-deurimnida~",
+            meaning: "Congratulations on your winning bet!",
+            note: "Warm, sincere, and upbeat."
+          }
+        ]
+      },
+      {
+        id: "2.6",
+        tabLabel: "2.6 Shoe & Dealer Change",
+        title: "2.6 Shoe Change & Dealer Change",
+        moodTags: ["Relaxed", "Informative", "Natural Pace", "Warm"],
+        howToDeliver: [
+          "Use a relaxed, natural, and informative tone.",
+          "Speak clearly without sounding too serious or robotic.",
+          "Maintain a consistent speaking pace.",
+          "Use a little warmth when introducing the next dealer."
+        ],
+        phrases: [
+          {
+            id: "2_6_1",
+            annotatedKo: "▲컷팅 카드 나왔습니다~",
+            cleanKo: "컷팅 카드 나왔습니다.",
+            romanized: "▲Keoting kadeu nawatseumnida~",
+            meaning: "The cutting card is out.",
+            note: "Informative and clear, without sounding overly stiff."
+          },
+          {
+            id: "2_6_2",
+            annotatedKo: "이번 게임 마치고 / ▲슈 체인지합니다~ (이번 슈 ▲마지막 게임입니다~)",
+            cleanKo: "이번 게임 마치고 슈 체인지합니다.",
+            romanized: "Ibeon geim machigo / ▲syu cheinji-hamnida~",
+            meaning: "After this game, we will have a shoe change. (Last game of this shoe.)",
+            note: "Keep a steady, natural rhythm across the phrase."
+          },
+          {
+            id: "2_6_3",
+            annotatedKo: "▲슈 체인지합니다~",
+            cleanKo: "슈 체인지합니다.",
+            romanized: "▲Syu cheinji-hamnida~",
+            meaning: "Changing the shoe now.",
+            note: "Clear and relaxed."
+          },
+          {
+            id: "2_6_4",
+            annotatedKo: "▲새로운 슈입니다~ / ▲새 슈입니다~",
+            cleanKo: "새로운 슈입니다.",
+            romanized: "▲Saeroun syu-imnida~ / ▲sae syu-imnida~",
+            meaning: "It's a new shoe.",
+            note: "Fresh, welcoming tone for the new shoe."
+          },
+          {
+            id: "2_6_5",
+            annotatedKo: "카드 ▲버닝하고 / 게임 시작합니다~",
+            cleanKo: "카드 버닝하고 게임 시작합니다.",
+            romanized: "Kadeu ▲beoning-hago / geim sijak-hamnida~",
+            meaning: "Burning cards and starting the game.",
+            note: "Smoothly connect '버닝하고' into '게임 시작합니다'."
+          },
+          {
+            id: "2_6_6",
+            annotatedKo: "카드 ▲버닝합니다~",
+            cleanKo: "카드 버닝합니다.",
+            romanized: "Kadeu ▲beoning-hamnida~",
+            meaning: "Burning cards.",
+            note: "Simple, natural, and well-paced."
+          },
+          {
+            id: "2_6_7",
+            annotatedKo: "▲딜러 체인지합니다~",
+            cleanKo: "딜러 체인지합니다.",
+            romanized: "▲Dilleo cheinji-hamnida~",
+            meaning: "Dealer change.",
+            note: "Add a touch of warmth when handing over the table."
+          }
+        ]
+      },
+      {
+        id: "2.7",
+        tabLabel: "2.7 Apologies & Issues",
+        title: "2.7 Mistakes, Apologies & Unexpected Situations",
+        moodTags: ["Calm", "Polite", "Reassuring", "Sincere"],
+        howToDeliver: [
+          "Keep your voice calm, polite, and reassuring.",
+          "Speak clearly and avoid rushing.",
+          "Maintain a steady and confident tone.",
+          "When thanking players for waiting, add warmth and sincerity."
+        ],
+        phrases: [
+          {
+            id: "2_7_1",
+            annotatedKo: "▲죄송합니다.",
+            cleanKo: "죄송합니다.",
+            romanized: "▲Joesong-hamnida.",
+            meaning: "I am sorry / Apologies.",
+            note: "Calm, polite, and sincere — do not rush through the syllables."
+          },
+          {
+            id: "2_7_2",
+            annotatedKo: "게임 잠시 ▲중단됩니다.",
+            cleanKo: "게임 잠시 중단됩니다.",
+            romanized: "Geim jamsi ▲jungdan-doemnida.",
+            meaning: "The game is temporarily paused.",
+            note: "Steady and reassuring so players stay comfortable."
+          },
+          {
+            id: "2_7_3",
+            annotatedKo: "▲확인 후 / 다시 진행하겠습니다.",
+            cleanKo: "확인 후 다시 진행하겠습니다.",
+            romanized: "▲Hwagin hu / dasi jinhaeng-hagetseumnida.",
+            meaning: "We will resume after checking.",
+            note: "Confident and clear pacing."
+          },
+          {
+            id: "2_7_4",
+            annotatedKo: "▲도움을 기다리고 있습니다.",
+            cleanKo: "도움을 기다리고 있습니다.",
+            romanized: "▲Doumeul gidarigo itseumnida.",
+            meaning: "We are waiting for assistance (supervisor/pit boss).",
+            note: "Keep your voice composed and professional."
+          },
+          {
+            id: "2_7_5",
+            annotatedKo: "오래 기다려 주셔서 / ↑감사합니다~",
+            cleanKo: "오래 기다려 주셔서 감사합니다.",
+            romanized: "Orae gidaryeo jusyeoseo / ↑gamsahamnida~",
+            meaning: "Thank you very much for waiting patiently.",
+            note: "Add genuine warmth and a grateful smile on '감사합니다~'."
+          }
+        ]
+      }
+    ];
+
+    let activeCategoryId = "2.1";
+    let currentAudio = null;
+    let activeMediaRecorder = null;
+    let activeRecordingPhraseId = null;
+    let recordingChunks = [];
+    const userRecordings = {};
+
+    function formatProsody(text) {
+      const escaped = String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+      const tokens = escaped.split(/(\s*\/\s*|~|↑[^\s~]+|▲[^\s~]+)/g);
+      return tokens.map(token => {
+        if (!token) return "";
+        if (/^\s*\/\s*$/.test(token)) {
+          return ' <span class="text-sky-500 font-extrabold mx-1">/</span> ';
+        }
+        if (token === "~") {
+          return '<span class="text-emerald-600 font-extrabold">~</span>';
+        }
+        if (token.startsWith("↑")) {
+          return `<span class="inline-flex items-baseline text-rose-600 font-bold bg-rose-50/90 px-1 rounded">${token}</span>`;
+        }
+        if (token.startsWith("▲")) {
+          return `<span class="inline-flex items-baseline text-amber-900 font-extrabold bg-amber-100/90 border-b-2 border-amber-400 px-1 rounded-t">${token}</span>`;
+        }
+        return token;
+      }).join("");
+    }
+
+    function stopAllPlayback() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+      }
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+      document.querySelectorAll(".audio-playing-indicator").forEach(el => el.classList.add("hidden"));
+    }
+
+    function playAvoid(phraseId, cleanText, btnEl) {
+      stopAllPlayback();
+      const indicator = btnEl.querySelector(".audio-playing-indicator");
+      if (indicator) indicator.classList.remove("hidden");
+
+      const audio = new Audio(`audio/${phraseId}_bad.mp3`);
+      currentAudio = audio;
+
+      audio.onended = () => {
+        if (indicator) indicator.classList.add("hidden");
+      };
+
+      audio.onerror = () => {
+        if ("speechSynthesis" in window) {
+          const utterance = new SpeechSynthesisUtterance(cleanText);
+          utterance.lang = "ko-KR";
+          utterance.pitch = 0.78;
+          utterance.rate = 0.85;
+          utterance.onend = () => {
+            if (indicator) indicator.classList.add("hidden");
+          };
+          utterance.onerror = () => {
+            if (indicator) indicator.classList.add("hidden");
+          };
+          window.speechSynthesis.speak(utterance);
+        } else if (indicator) {
+          indicator.classList.add("hidden");
+        }
+      };
+
+      audio.play().catch(() => audio.onerror());
+    }
+
+    function playIdeal(phraseId, cleanText, btnEl) {
+      stopAllPlayback();
+      const indicator = btnEl.querySelector(".audio-playing-indicator");
+      if (indicator) indicator.classList.remove("hidden");
+
+      const audio = new Audio(`audio/${phraseId}.mp3`);
+      currentAudio = audio;
+
+      audio.onended = () => {
+        if (indicator) indicator.classList.add("hidden");
+      };
+
+      audio.onerror = () => {
+        if ("speechSynthesis" in window) {
+          const utterance = new SpeechSynthesisUtterance(cleanText);
+          utterance.lang = "ko-KR";
+          utterance.pitch = 1.18;
+          utterance.rate = 1.02;
+          utterance.onend = () => {
+            if (indicator) indicator.classList.add("hidden");
+          };
+          utterance.onerror = () => {
+            if (indicator) indicator.classList.add("hidden");
+          };
+          window.speechSynthesis.speak(utterance);
+        } else if (indicator) {
+          indicator.classList.add("hidden");
+        }
+      };
+
+      audio.play().catch(() => audio.onerror());
+    }
+
+    async function toggleRecord(phraseId) {
+      stopAllPlayback();
+
+      if (activeMediaRecorder && activeMediaRecorder.state === "recording") {
+        const wasSamePhrase = activeRecordingPhraseId === phraseId;
+        activeMediaRecorder.stop();
+        if (wasSamePhrase) return;
+      }
+
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        showMicStatus("Your browser does not support audio recording. Please try Chrome or Safari on HTTPS.");
+        return;
+      }
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        hideMicStatus();
+
+        recordingChunks = [];
+        activeRecordingPhraseId = phraseId;
+        const mediaRecorder = new MediaRecorder(stream);
+        activeMediaRecorder = mediaRecorder;
+
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0) recordingChunks.push(event.data);
+        };
+
+        mediaRecorder.onstop = () => {
+          stream.getTracks().forEach(track => track.stop());
+          if (recordingChunks.length > 0) {
+            const blob = new Blob(recordingChunks, { type: mediaRecorder.mimeType || "audio/webm" });
+            if (userRecordings[phraseId]) {
+              URL.revokeObjectURL(userRecordings[phraseId]);
+            }
+            userRecordings[phraseId] = URL.createObjectURL(blob);
+          }
+          activeRecordingPhraseId = null;
+          activeMediaRecorder = null;
+          renderContent();
+        };
+
+        mediaRecorder.start();
+        renderContent();
+      } catch (err) {
+        showMicStatus("Microphone permission denied or unavailable. Please allow mic access in your browser settings.");
+      }
+    }
+
+    function playUserRecording(phraseId, btnEl) {
+      const url = userRecordings[phraseId];
+      if (!url) return;
+
+      stopAllPlayback();
+      const indicator = btnEl.querySelector(".audio-playing-indicator");
+      if (indicator) indicator.classList.remove("hidden");
+
+      const audio = new Audio(url);
+      currentAudio = audio;
+      audio.onended = () => {
+        if (indicator) indicator.classList.add("hidden");
+      };
+      audio.onerror = () => {
+        if (indicator) indicator.classList.add("hidden");
+      };
+      audio.play();
+    }
+
+    function showMicStatus(msg) {
+      const banner = document.getElementById("micStatusBanner");
+      document.getElementById("micStatusText").innerText = msg;
+      banner.classList.remove("hidden");
+    }
+
+    function hideMicStatus() {
+      document.getElementById("micStatusBanner").classList.add("hidden");
+    }
+
+    function selectCategory(id) {
+      stopAllPlayback();
+      activeCategoryId = id;
+      renderTabs();
+      renderContent();
+    }
+
+    function renderTabs() {
+      const tabsEl = document.getElementById("categoryTabs");
+      tabsEl.innerHTML = guideData.map(cat => {
+        const isActive = cat.id === activeCategoryId;
+        return `
+          <button
+            onclick="selectCategory('${cat.id}')"
+            class="px-3.5 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+              isActive
+                ? "bg-indigo-600 text-white shadow-sm"
+                : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 hover:text-slate-900"
+            }"
+          >
+            ${cat.tabLabel}
+          </button>
+        `;
+      }).join("");
+    }
+
+    function renderContent() {
+      const category = guideData.find(c => c.id === activeCategoryId);
+      if (!category) return;
+
+      const headerEl = document.getElementById("sectionHeader");
+      headerEl.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <h2 class="text-base sm:text-lg font-bold text-slate-900">${category.title}</h2>
+          <div class="flex flex-wrap gap-1.5">
+            ${category.moodTags.map(tag => `
+              <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                #${tag}
+              </span>
+            `).join("")}
+          </div>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200/80">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-1.5">How to Deliver</div>
+          <ul class="space-y-1 text-xs sm:text-sm text-slate-600 list-disc list-inside">
+            ${category.howToDeliver.map(tip => `<li>${tip}</li>`).join("")}
+          </ul>
+        </div>
+      `;
+
+      const containerEl = document.getElementById("phrasesContainer");
+      containerEl.innerHTML = category.phrases.map((phrase, idx) => {
+        const isRecordingThis = activeRecordingPhraseId === phrase.id;
+        const hasRecording = Boolean(userRecordings[phrase.id]);
+        const safeCleanKo = phrase.cleanKo.replace(/'/g, "\\'");
+
+        return `
+          <article class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm transition-all hover:border-slate-300">
+            <div class="flex items-start justify-between gap-2 mb-2.5">
+              <span class="inline-flex items-center text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                Phrase ${category.id}.${idx + 1}
+              </span>
+              <span class="text-xs text-slate-500 font-medium text-right">${phrase.meaning}</span>
+            </div>
+
+            <div class="ko-text text-xl sm:text-2xl font-bold text-slate-900 leading-relaxed mb-1.5">
+              ${formatProsody(phrase.annotatedKo)}
+            </div>
+
+            <div class="text-sm sm:text-base text-slate-600 font-medium leading-relaxed mb-3">
+              ${formatProsody(phrase.romanized)}
+            </div>
+
+            <div class="text-xs text-slate-500 bg-slate-50 border border-slate-100 rounded-lg px-3 py-2 mb-4 flex items-start gap-2">
+              <span class="text-indigo-500 shrink-0 mt-0.5">💡</span>
+              <span>${phrase.note}</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 border-t border-slate-100">
+              <button
+                onclick="playAvoid('${phrase.id}', '${safeCleanKo}', this)"
+                class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-rose-50/70 hover:bg-rose-100/80 text-rose-700 border border-rose-200/80 transition-colors"
+              >
+                <span>🚫</span>
+                <span>Avoid (Flat)</span>
+                <span class="audio-playing-indicator hidden inline-block w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+              </button>
+
+              <button
+                onclick="playIdeal('${phrase.id}', '${safeCleanKo}', this)"
+                class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition-colors"
+              >
+                <span>✨</span>
+                <span>Ideal (Pro)</span>
+                <span class="audio-playing-indicator hidden inline-block w-2 h-2 rounded-full bg-white animate-ping"></span>
+              </button>
+
+              <div class="flex items-center gap-1.5">
+                ${isRecordingThis ? `
+                  <button
+                    onclick="toggleRecord('${phrase.id}')"
+                    class="relative recording-pulse flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-red-600 text-white shadow-sm"
+                  >
+                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                    <span>Stop Rec</span>
+                  </button>
+                ` : hasRecording ? `
+                  <button
+                    onclick="playUserRecording('${phrase.id}', this)"
+                    class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition-colors"
+                  >
+                    <span>▶️</span>
+                    <span>My Voice</span>
+                    <span class="audio-playing-indicator hidden inline-block w-2 h-2 rounded-full bg-white animate-ping"></span>
+                  </button>
+                  <button
+                    onclick="toggleRecord('${phrase.id}')"
+                    class="px-2.5 py-2.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-colors"
+                    title="Re-record your voice"
+                  >
+                    🔄
+                  </button>
+                ` : `
+                  <button
+                    onclick="toggleRecord('${phrase.id}')"
+                    class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-colors"
+                  >
+                    <span>🎙️</span>
+                    <span>Record Mine</span>
+                  </button>
+                `}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    renderTabs();
+    renderContent();
+  </script>
+</body>
+</html>
